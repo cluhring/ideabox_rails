@@ -1,0 +1,14 @@
+<div id="errors">
+  <%= flash[:errors] %>
+</div>
+
+
+<div id="welcome">
+  "Please Login"
+</div>
+
+<%= form_for(:sesh, url: login_path) do |f| %>
+  <%= f.text_field :username %>
+  <%= f.password_field :password %>
+  <%= f.submit "Login" %>
+<% end %>
