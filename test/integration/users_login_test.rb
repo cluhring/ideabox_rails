@@ -2,17 +2,18 @@ require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
-  attr_reader :user
+  attr_reader :user, :idea1, :idea2
 
   def setup
     @user = User.create(username: "Chris", password: "Lauren")
+    @idea1 = Idea.create(name: "Good Idea", user_id: @user.id)
+    @idea2 = Idea.create(name: "Great Idea", user_id: @user.id)
     visit login_path
   end
 
   test "user sees login page at login path" do
     assert page.has_content?("Please Login")
   end
-
 
   test "registered user can login" do
     fill_in "sesh[username]", with: "Chris"
@@ -35,12 +36,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "logged in user sees user's ideas" do
     ApplicationController.any_instance.stubs(:current_user).returns(user)
     visit user_path(user)
-    within("#banner") do
-      assert page.has_content?("Welcome, Chris")
+    within("#ideas") do
+      assert page.has_content?("Great Idea")
     end
   end
 
-  
+
 
 
 end

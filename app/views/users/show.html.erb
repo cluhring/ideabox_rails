@@ -1,4 +1,12 @@
 <div id="banner">
   Welcome, <%= @user.username %>
-
 </div>
+
+<h3> Ideas </h3>
+<ul id="ideas">
+  <% @user.ideas.each do |idea| %>
+  <li>
+    <%= idea.name %>
+  </li>
+  <% end %>
+</ul>

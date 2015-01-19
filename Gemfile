@@ -43,4 +43,5 @@ group :development, :test do
   gem 'capybara'
   gem 'mocha'
   gem 'launchy'
+  gem 'cancan'
 end
