@@ -41,7 +41,11 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     end
   end
 
-
-
+  test "logged in user can logout" do
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+    visit user_path(user)
+    click_link_or_button "Logout"
+    assert page.has_content?("Successful logout")
+  end
 
 end

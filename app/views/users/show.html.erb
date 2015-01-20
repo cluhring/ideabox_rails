@@ -1,12 +1,20 @@
+<div id="log_in">
+  <%= flash[:notice] %>
+</div>
+
 <div id="banner">
   Welcome, <%= @user.username %>
 </div>
 
 <h3> Ideas </h3>
+
 <ul id="ideas">
   <% @user.ideas.each do |idea| %>
   <li>
-    <%= idea.name %>
+    <%= link_to idea.name, idea_path(idea),
+    class: 'idea_title', id: "idea_#{idea.id}" %>
   </li>
   <% end %>
-</ul>
+</ul><br>
+
+<%= link_to "Create a New Idea", new_idea_path, class: "new_idea" %>

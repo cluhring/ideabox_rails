@@ -6,9 +6,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(username: params[:sesh][:username])
     if user && user.authenticate(params[:sesh][:password])
+      # require 'pry' ; binding.pry
       session[:user_id] = user.id
-      flash[:success] = "You have successfully logged in nucka."
-      redirect_to user_path(user) #the argument of the user object   becomes the :id of the params in the usercontroller.
+      flash[:notice] = "Successful login."
+      redirect_to user_path(user.id) #the argument of the user object   becomes the :id of the params in the usercontroller.
     else
       flash[:errors] = "You typed in the wrong username/password"
       render :new
@@ -16,9 +17,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    flash[:errors] = "Successful logout"
     session.clear
     redirect_to root_path
-    flash[:success] = "Successful logout"
   end
 
 end
