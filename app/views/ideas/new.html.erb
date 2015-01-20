@@ -1,0 +1,16 @@
+<h1>Create a New Idea</h1>
+
+<%= form_for(@idea) do |f| %>
+  <ul>
+    <% @idea.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+  <% end %>

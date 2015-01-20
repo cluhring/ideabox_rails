@@ -6,15 +6,7 @@
   Welcome, <%= @user.username %>
 </div>
 
-<h3> Ideas </h3>
+<h1> Ideas </h1>
+<%= render partial: 'users/idea', collection: @user.ideas %><br>
 
-<ul id="ideas">
-  <% @user.ideas.each do |idea| %>
-  <li>
-    <%= link_to idea.name, idea_path(idea),
-    class: 'idea_title', id: "idea_#{idea.id}" %>
-  </li>
-  <% end %>
-</ul><br>
-
-<%= link_to "Create a New Idea", new_idea_path, class: "new_idea" %>
+<%= link_to "Create a New Idea", user_path, class: "new_idea" %>
